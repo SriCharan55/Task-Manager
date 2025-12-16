@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:5000";
+export const BASE_URL = "https://task-manager-3r80.onrender.com";
 
 export const API_PATHS = {
   TASKS: {
@@ -7,3 +7,4 @@ export const API_PATHS = {
     DELETE: (id) => `/api/tasks/${id}`,
   },
 };
+
