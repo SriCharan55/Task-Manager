@@ -12,6 +12,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.json({
+    message: "Task Manager Backend API is running ",
+    endpoints: {
+      getTasks: "GET /api/tasks",
+      addTask: "POST /api/tasks",
+      deleteTask: "DELETE /api/tasks/:id"
+    }
+  });
+});
+
 app.use("/api", taskRoutes);
 
 const PORT = process.env.PORT || 5000;
