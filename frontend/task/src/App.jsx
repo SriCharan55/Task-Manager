@@ -39,7 +39,7 @@ function App() {
     <div className="min-h-screen bg-gray-100 flex justify-center pt-14">
       {/* Main Card */}
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl mb-10 p-7 flex flex-col min-h-130">
-        
+
         {/* Title */}
         <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
           Task Manager
@@ -67,9 +67,16 @@ function App() {
         {/* Task List */}
         {!loading && (
           <div className="flex-1 overflow-y-auto pb-6">
+
+            {/* Tasks Heading */}
+            <h2 className="text-lg font-semibold text-gray-700 mb-4">
+              Tasks
+            </h2>
+
             <TaskList tasks={tasks} onDelete={handleDelete} />
           </div>
         )}
+
       </div>
     </div>
   );
