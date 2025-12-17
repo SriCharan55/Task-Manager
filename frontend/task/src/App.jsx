@@ -9,17 +9,33 @@ function App() {
   const [error, setError] = useState("");
 
   const fetchTasks = async () => {
-    try {
-      setLoading(true);
-      setError("");
-      const res = await getTasks();
-      setTasks(res.data);
-    } catch {
-      setError("Failed to fetch tasks");
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    setLoading(true);
+    setError("");
+
+    const res = await getTasks();
+    setTasks(res.data);
+
+  } catch {
+    // Retry once after delay (cold start fix)
+    setTimeout(async () => {
+      try {
+        const res = await getTasks();
+        setTasks(res.data);
+        setError("");
+      } catch {
+        setError("Server is waking up, please try again");
+      } finally {
+        setLoading(false);
+      }
+    }, 1500);
+
+    return;
+  }
+
+  setLoading(false);
+};
+
 
   useEffect(() => {
     fetchTasks();
